@@ -9,7 +9,7 @@ class ExamScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exam Notice'),
+        title: const Text('Exam Notice'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -17,43 +17,43 @@ class ExamScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Exam Schedule',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'Date: April 30, 2023',
                 style: TextStyle(fontSize: 18),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'Time: 10:00 AM to 1:00 PM',
                 style: TextStyle(fontSize: 18),
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'Exam Syllabus',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ListView(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  ListTile(
+                  const ListTile(
                     leading: Icon(Icons.arrow_right),
                     title: Text('Mathematics'),
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(Icons.arrow_right),
                     title: Text('Science'),
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(Icons.arrow_right),
                     title: Text('Social Science'),
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(Icons.arrow_right),
                     title: Text('English Language'),
                   ),

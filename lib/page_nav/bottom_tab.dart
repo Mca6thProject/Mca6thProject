@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:instinfo/auth/current_user/ui/current_user_screen.dart';
 import '../home/ui/home_screen.dart';
 import 'root_page.dart';
 
@@ -67,9 +68,7 @@ class RootPage extends HookConsumerWidget {
               break;
             case 2:
               tabPage = MyPageController(
-                page: Container(
-                  child: Center(child: Text('Profile Screen')),
-                ),
+                page: CurrentUserProfileScreen('sdfzdfa'),
                 navKey: thirdTabNavKey,
                 number: index + 1,
               );

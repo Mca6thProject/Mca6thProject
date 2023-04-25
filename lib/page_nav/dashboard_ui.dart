@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:instinfo/auth/current_user/ui/current_user_screen.dart';
 import 'package:instinfo/page_nav/widgets/bottom_nav_bar.dart';
 
 import '../home/ui/home_screen.dart';
@@ -53,7 +54,7 @@ class Dashboard extends HookConsumerWidget {
                     children: [
                       HomeScreen(),
                       Container(),
-                      Container(),
+                      CurrentUserProfileScreen('sdfasdf'),
                     ]),
                 Positioned(
                   top: 15,

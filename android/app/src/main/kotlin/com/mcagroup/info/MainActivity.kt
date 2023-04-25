@@ -1,4 +1,4 @@
-package com.example.instinfo
+package com.mcagroup.info
 
 import io.flutter.embedding.android.FlutterActivity
 
