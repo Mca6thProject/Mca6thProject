@@ -7,11 +7,14 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(
+        top: 10.0,
+        bottom: 10,
+      ),
       child: Expanded(
         child: Container(
           height: 150,
-          width: MediaQuery.of(context).size.width * 0.44,
+          width: MediaQuery.of(context).size.width * 0.43,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
             color: Colors.grey.shade400,
@@ -52,11 +55,11 @@ class PicOfTheDayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(top: 10.0, bottom: 10),
       child: Expanded(
         child: Container(
           height: 150,
-          width: MediaQuery.of(context).size.width * 0.44,
+          width: MediaQuery.of(context).size.width * 0.43,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
             color: Color.fromARGB(255, 45, 43, 43),

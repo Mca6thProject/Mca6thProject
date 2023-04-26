@@ -51,7 +51,7 @@ dependencies:
   hooks_riverpod: ^2.3.2
   image_picker:
   extended_image: ^6.2.1
-
+  card_swiper: ^2.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

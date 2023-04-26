@@ -6,10 +6,10 @@ class MiniCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.only(top: 10.0, bottom: 10),
       child: SizedBox(
         height: 150,
-        width: MediaQuery.of(context).size.width * 0.44,
+        width: MediaQuery.of(context).size.width * 0.43,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

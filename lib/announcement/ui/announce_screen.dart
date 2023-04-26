@@ -1,9 +1,10 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:instinfo/announcement/ui/widget/announce_box.dart';
 
-import '../../../post/controller/post_controller.dart';
-import 'announce_card.dart';
+import '../../post/controller/post_controller.dart';
+import 'widget/announce_card.dart';
 
 class AnnouceScreen extends ConsumerWidget {
   const AnnouceScreen({super.key});
@@ -16,13 +17,20 @@ class AnnouceScreen extends ConsumerWidget {
     return ref.watch(postsProvider).when(
           data: (data) {
             return SizedBox(
-              height: 250,
-              child: ListView.builder(
+              height: 230,
+              child: Swiper(
+                physics: const BouncingScrollPhysics(),
+                viewportFraction: 0.9,
+                scale: 0.93,
                 scrollDirection: Axis.horizontal,
                 itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
                   final post = data[index];
-                  return AnnouceCard(post);
+                  return Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+                    child: AnnouceCard(post),
+                  );
                 },
               ),
             );
@@ -32,7 +40,9 @@ class AnnouceScreen extends ConsumerWidget {
               error.toString(),
             );
           },
-          loading: () => const CircularProgressIndicator(),
+          loading: () => SizedBox(
+              height: 250,
+              child: Center(child: const CircularProgressIndicator())),
         );
   }
 }

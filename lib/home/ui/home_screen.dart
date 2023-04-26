@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:instinfo/announcement/ui/widget/announce_screen.dart';
+import 'package:instinfo/announcement/ui/announce_screen.dart';
 import 'package:instinfo/auth/current_user/ui/current_user_screen.dart';
 import 'package:instinfo/exam/ui/exam_screen.dart';
 import 'package:instinfo/home/ui/widget/category_box.dart';
@@ -25,16 +25,16 @@ class HomeScreen extends HookConsumerWidget {
             shrinkWrap: true,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 20, left: 10, bottom: 10),
+                padding: EdgeInsets.only(top: 20, left: 20, bottom: 10),
                 child: Text(
                   "Nielit Aizawl",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
               const AnnounceText(),
-              AnnouceScreen(),
+              const AnnouceScreen(),
               const Padding(
-                padding: EdgeInsets.only(top: 10, left: 10, bottom: 10),
+                padding: EdgeInsets.only(top: 10, left: 20, bottom: 10),
                 child: Text(
                   "Category",
                   style: TextStyle(
@@ -42,42 +42,54 @@ class HomeScreen extends HookConsumerWidget {
                   ),
                 ),
               ),
-              Row(
-                children: const [MiniCard(), PicOfTheDayCard()],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [MiniCard(), PicOfTheDayCard()],
+                ),
               ),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => ExamScreen()));
-                    },
-                    child: const CategoryCard(
-                      icon: Icons.edit_document,
-                      text: "Exam",
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => ExamScreen()));
+                      },
+                      child: const CategoryCard(
+                        icon: Icons.edit_document,
+                        text: "Exam",
+                      ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const AddPostScreenMain())),
-                    child: const CategoryCard(
-                      icon: Icons.app_registration,
-                      text: "Semester Registration",
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const AddPostScreenMain())),
+                      child: const CategoryCard(
+                        icon: Icons.app_registration,
+                        text: "Semester Registration",
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Row(
-                children: const [
-                  CategoryCard(
-                    icon: Icons.person_4,
-                    text: "Faculty",
-                  ),
-                  CategoryCard(
-                    icon: Icons.library_books_outlined,
-                    text: "Library",
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    CategoryCard(
+                      icon: Icons.person_4,
+                      text: "Faculty",
+                    ),
+                    CategoryCard(
+                      icon: Icons.library_books_outlined,
+                      text: "Library",
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -91,7 +103,7 @@ class HomeScreen extends HookConsumerWidget {
                           const CurrentUserProfileScreen("heroTag")));
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(top: 16.0, right: 20),
                   child: CircleAvatar(
                     backgroundColor: Colors.grey.shade300,
                     child: const Icon(
