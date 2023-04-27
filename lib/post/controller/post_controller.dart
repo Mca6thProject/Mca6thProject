@@ -44,11 +44,12 @@ class PostController extends StateNotifier<bool> {
     required BuildContext context,
     required String title,
     required File? file,
+    required String description,
     required Uint8List? webFile,
   }) async {
     state = true;
     String postId = const Uuid().v1();
-    final user = _ref.read(currentUserControllerProvider);
+    //  final user = _ref.read(currentUserControllerProvider);
     final imageRes = await _storageRepository.storeFile(
       path: 'posts',
       id: postId,
@@ -58,12 +59,12 @@ class PostController extends StateNotifier<bool> {
 
     imageRes?.fold((l) => showSnackBar(context, l.message), (r) async {
       final Post post = Post(
-        id: postId,
-        title: title,
-        type: 'image',
-        createdAt: DateTime.now(),
-        link: r,
-      );
+          id: postId,
+          title: title,
+          type: 'image',
+          createdAt: DateTime.now(),
+          link: r,
+          description: description);
 
       final res = await _postRepository.addPost(post);
       // _ref.read(userProfileControllerProvider.notifier).updateUserKarma(UserKarma.imagePost);

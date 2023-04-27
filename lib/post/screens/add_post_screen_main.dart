@@ -4,7 +4,6 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../responsive/responsive.dart';
 import '../controller/post_controller.dart';
 import '../utils.dart';
@@ -53,29 +52,14 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
     if ((bannerFile != null || bannerWebFile != null) &&
         titleController.text.isNotEmpty) {
       ref.read(postControllerProvider.notifier).shareImagePost(
-            context: context,
-            title: titleController.text.trim(),
-            file: bannerFile,
-            webFile: bannerWebFile,
-          );
+          context: context,
+          title: titleController.text.trim(),
+          file: bannerFile,
+          webFile: bannerWebFile,
+          description: descriptionController.text.trim());
+    } else {
+      showSnackBar(context, 'Please enter all the fields');
     }
-    //  else if (widget.type == 'text' && titleController.text.isNotEmpty) {
-    //   ref.read(postControllerProvider.notifier).shareTextPost(
-    //         context: context,
-    //         title: titleController.text.trim(),
-    //         selectedCommunity: selectedCommunity ?? communities[0],
-    //         description: descriptionController.text.trim(),
-    //       );
-    // } else if (widget.type == 'link' && titleController.text.isNotEmpty && linkController.text.isNotEmpty) {
-    //   ref.read(postControllerProvider.notifier).shareLinkPost(
-    //         context: context,
-    //         title: titleController.text.trim(),
-    //         selectedCommunity: selectedCommunity ?? communities[0],
-    //         link: linkController.text.trim(),
-    //       );
-    // } else {
-    //   showSnackBar(context, 'Please enter all the fields');
-    // }
   }
 
   @override
@@ -85,7 +69,7 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Announcement'),
+        title: const Text('Announcement'),
         actions: [
           TextButton(
             onPressed: sharePost,
@@ -97,7 +81,7 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
         ],
       ),
       body: isLoading
-          ? const CircularProgressIndicator()
+          ? const Center(child: CircularProgressIndicator())
           : Responsive(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -201,6 +185,16 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
                   //       ),
 
                   // ],
+                  TextField(
+                    controller: descriptionController,
+                    decoration: const InputDecoration(
+                      filled: true,
+                      hintText: 'Enter Description here',
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.all(18),
+                    ),
+                    maxLines: 5,
+                  ),
                 ]),
               ),
             ),
