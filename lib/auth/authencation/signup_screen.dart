@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../tools/utils.dart';
+import '../../utils/tools/utils.dart';
 import 'controller/auth_controller.dart';
 import 'controller/login_sceen_controller.dart';
 import 'login_screen.dart';
@@ -157,22 +157,17 @@ class SignUpScreen extends HookConsumerWidget {
                             if (formKey.currentState!.validate()) {
                               isLoading.value = true;
                               //  print('valid');
-                              if (imageController.value != bytes) {
-                                auth
-                                    .signUpWithEmailAndPassword(
-                                      imageController.value,
-                                      email.text,
-                                      password.text,
-                                      name.text,
-                                      bio.text,
-                                      context,
-                                    )
-                                    .whenComplete(
-                                        () => isLoading.value = false);
-                              } else {
-                                isLoading.value = false;
-                                showSnackBar(context, 'Please select image');
-                              }
+
+                              auth
+                                  .signUpWithEmailAndPassword(
+                                    imageController.value,
+                                    email.text,
+                                    password.text,
+                                    name.text,
+                                    bio.text,
+                                    context,
+                                  )
+                                  .whenComplete(() => isLoading.value = false);
                             }
                           }),
                           radius: 6,

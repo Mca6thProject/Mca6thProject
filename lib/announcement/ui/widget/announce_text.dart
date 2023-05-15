@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instinfo/announcement/ui/announce_all_screen.dart';
 
@@ -9,14 +8,14 @@ class AnnounceText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Padding(
-          padding: EdgeInsets.only(top: 20, left: 20, bottom: 0),
+        const Padding(
+          padding: EdgeInsets.only(top: 20, left: 20, bottom: 8),
           child: Text(
             "Announcement",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
           ),
         ),
-        Spacer(),
+        const Spacer(),
         GestureDetector(
           onTap: () => showModalBottomSheet(
               isScrollControlled: true,

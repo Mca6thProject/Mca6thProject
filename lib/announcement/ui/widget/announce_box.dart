@@ -1,7 +1,7 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:instinfo/post/post_model.dart';
+import 'package:instinfo/announcement/post/post_model.dart';
 
 class AnnounceCard extends HookConsumerWidget {
   final Post post;

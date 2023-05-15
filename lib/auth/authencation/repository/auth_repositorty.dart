@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:typed_data';
 
-import '../../../tools/storage_methods.dart';
+import '../../../utils/tools/storage_methods.dart';
 import '../../user_model.dart';
 import '../controller/auth_controller.dart';
 import '../widget/clean_text.dart';

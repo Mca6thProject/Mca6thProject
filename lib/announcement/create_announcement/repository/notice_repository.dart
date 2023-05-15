@@ -3,60 +3,63 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../tools/storage_methods.dart';
-import '../notice_model.dart';
+import '../../../utils/tools/storage_methods.dart';
+import '../../model/announcement_model.dart';
 
-final noticerepository = Provider((ref) => NoticeRepository());
+final annoucementrepository = Provider((ref) => AnnoucementRepository());
 
-class NoticeRepository {
-  Future createnotice(Notice notice, Uint8List file) async {
+class AnnoucementRepository {
+  Future createAnnoucement(Annoucement annoucement, Uint8List file) async {
     // final userData=reader()
     final firebase = FirebaseFirestore.instance;
     try {
       String photoUrl = await StorageMethods()
-          .uploadImageToStorage('notice', file, notice.title);
-      notice.copyWith(img: photoUrl);
-      firebase.collection('notice').doc(notice.id).set(Notice(
-            id: notice.id,
+          .uploadImageToStorage('Annoucement', file, annoucement.title);
+      annoucement.copyWith(img: photoUrl);
+      firebase.collection('Annoucement').doc(annoucement.id).set(Annoucement(
+            id: annoucement.id,
             img: photoUrl,
-            link: notice.link,
+            link: annoucement.link,
             body: '',
             date: '',
             others: '',
             subtitle: '',
             title: '',
+            type: '',
           ).toMap());
       // .then((value) => reader(currentUserControllerProvider.notifier)
       // );
-      getnotice();
+      getAnnoucement();
     } catch (e) {
       print(e);
     }
   }
 
   ///
-  Future updatenotice(Notice notice, bool isNewPhoto, Uint8List file) async {
+  Future updateAnnoucement(
+      Annoucement annoucement, bool isNewPhoto, Uint8List file) async {
     final firebase = FirebaseFirestore.instance;
     try {
       String imgUrl = '';
       if (isNewPhoto) {
         String photoUrl = await StorageMethods()
-            .uploadImageToStorage('notice', file, notice.title);
+            .uploadImageToStorage('Annoucement', file, annoucement.title);
 
         imgUrl = photoUrl;
       }
       firebase
-          .collection('notice')
-          .doc(notice.id)
-          .update(Notice(
-            id: notice.id,
-            img: isNewPhoto ? imgUrl : notice.img,
-            link: notice.link,
+          .collection('Annoucement')
+          .doc(annoucement.id)
+          .update(Annoucement(
+            id: annoucement.id,
+            img: isNewPhoto ? imgUrl : annoucement.img,
+            link: annoucement.link,
             body: '',
             date: '',
             others: '',
             subtitle: '',
             title: '',
+            type: '',
           ).toMap())
           .then((value) => print('done'));
     } catch (e) {
@@ -64,12 +67,12 @@ class NoticeRepository {
     }
   }
 
-  Future deletenotice(Notice notice) async {
+  Future deleteAnnoucement(Annoucement annoucement) async {
     final firebase = FirebaseFirestore.instance;
     try {
       firebase
-          .collection('notice')
-          .doc(notice.id)
+          .collection('Annoucement')
+          .doc(annoucement.id)
           .delete()
           .then((value) => print('done'));
     } catch (e) {
@@ -77,20 +80,20 @@ class NoticeRepository {
     }
   }
 
-  Future<List<Notice>> getnotice() async {
+  Future<List<Annoucement>> getAnnoucement() async {
     final firebase = FirebaseFirestore.instance;
     try {
-      List<Notice> noticeList = [];
+      List<Annoucement> annoucementList = [];
       final snapshot = await firebase
-          .collection('notice')
+          .collection('Annoucement')
           .orderBy('startDate', descending: true)
           .get();
 
       for (var element in snapshot.docs) {
-        noticeList.add(Notice.fromMap(element.data()));
+        annoucementList.add(Annoucement.fromMap(element.data()));
       }
 
-      return noticeList;
+      return annoucementList;
     } catch (e) {
       return [];
     }

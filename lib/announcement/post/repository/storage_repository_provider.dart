@@ -38,8 +38,9 @@ class StorageRepository {
 
       return right(await snapshot.ref.getDownloadURL());
     } catch (e) {
-      return null;
-      // left(Failure(e.toString()));
+      print(e.toString());
+      return null; //e.toString());
+      //  left(Failure(e.toString()));
     }
   }
 }

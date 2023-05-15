@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 
-import '../../constants/firebase_constants.dart';
+import '../../../utils/constants/firebase_constants.dart';
 import '../controller/firebase_providers.dart';
 import '../post_model.dart';
 

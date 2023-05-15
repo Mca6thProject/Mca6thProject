@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:instinfo/auth/title.dart';
 
 import '../page_nav/bottom_tab.dart';
-import '../tools/utils.dart';
+import '../utils/tools/utils.dart';
 import 'controller/login_sceen_controller.dart';
 import 'login/auth_button.dart';
 import 'login/input_border.dart';

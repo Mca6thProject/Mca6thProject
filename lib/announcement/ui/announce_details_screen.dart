@@ -1,8 +1,8 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../post/post_model.dart';
-import '../../tools/date_time_format.dart';
+import '../post/post_model.dart';
+import '../../utils/tools/date_time_format.dart';
 import 'widget/announce_card.dart';
 
 class AnnounceDetailsScreen extends StatelessWidget {

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:instinfo/utils/common/color.dart';
 
-class MiniCard extends StatelessWidget {
+class MiniCard extends HookConsumerWidget {
   const MiniCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return Padding(
       padding: const EdgeInsets.only(top: 10.0, bottom: 10),
       child: SizedBox(
@@ -21,7 +23,7 @@ class MiniCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.2,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
-                    color: Colors.grey.shade400,
+                    color: ref.watch(primaryColor),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +52,7 @@ class MiniCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.2,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
-                    color: Colors.grey.shade400,
+                    color: ref.watch(primaryColor),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +83,7 @@ class MiniCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.2,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
-                    color: Colors.grey.shade400,
+                    color: ref.watch(primaryColor),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +109,7 @@ class MiniCard extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.2,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
-                    color: Colors.grey.shade400,
+                    color: ref.watch(primaryColor),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

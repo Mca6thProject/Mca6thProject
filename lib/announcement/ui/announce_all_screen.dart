@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:instinfo/announcement/ui/widget/announce_box.dart';
 
-import '../../post/controller/post_controller.dart';
+import '../post/controller/post_controller.dart';
 import 'widget/announce_card.dart';
 
 class AnnouceAllScreen extends ConsumerWidget {

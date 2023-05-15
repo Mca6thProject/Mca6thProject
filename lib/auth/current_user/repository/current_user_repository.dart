@@ -16,10 +16,11 @@ class UserRepository {
 
     try {
       final result = await firebase.collection('user').doc(userId).get();
+      print(result.data());
       UserModel user = UserModel.fromMap(result.data()!);
       return user;
     } catch (e) {
-      // print(e);
+      print(e);
       return null;
     }
   }

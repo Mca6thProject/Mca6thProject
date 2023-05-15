@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instinfo/announcement/ui/announce_screen.dart';
+import 'package:instinfo/admin/ui/admin_button.dart';
 import 'package:instinfo/auth/current_user/ui/current_user_screen.dart';
-import 'package:instinfo/exam/ui/exam_screen.dart';
 import 'package:instinfo/home/ui/widget/category_box.dart';
-import 'package:instinfo/post/screens/add_post_screen.dart';
+import 'package:instinfo/announcement/post/screens/add_post_screen.dart';
 
 import '../../announcement/ui/widget/announce_box.dart';
 import '../../announcement/ui/widget/announce_text.dart';
-import '../../post/screens/add_post_screen_main.dart';
+import '../../auth/current_user/controller/current_user_controller_provider.dart';
+import '../../announcement/post/screens/add_post_screen_main.dart';
 import 'widget/mini_cate_box.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -24,11 +26,14 @@ class HomeScreen extends HookConsumerWidget {
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 20, left: 20, bottom: 10),
+              Padding(
+                padding: const EdgeInsets.only(top: 18, left: 20, bottom: 0),
                 child: Text(
                   "Nielit Aizawl",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.sourceSansPro(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade900),
                 ),
               ),
               const AnnounceText(),
@@ -56,8 +61,8 @@ class HomeScreen extends HookConsumerWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => ExamScreen()));
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (_) =>  ExamScreen()));
                       },
                       child: const CategoryCard(
                         icon: Icons.edit_document,
@@ -96,6 +101,7 @@ class HomeScreen extends HookConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              const AdminButton(),
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(CupertinoPageRoute(
@@ -103,7 +109,7 @@ class HomeScreen extends HookConsumerWidget {
                           const CurrentUserProfileScreen("heroTag")));
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 16.0, right: 20),
+                  padding: const EdgeInsets.only(top: 18.0, right: 20),
                   child: CircleAvatar(
                     backgroundColor: Colors.grey.shade300,
                     child: const Icon(

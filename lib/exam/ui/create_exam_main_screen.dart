@@ -4,21 +4,23 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../responsive/responsive.dart';
-import '../controller/post_controller.dart';
-import '../utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class AddPostScreenMain extends ConsumerStatefulWidget {
-  const AddPostScreenMain({
+import '../../announcement/post/controller/post_controller.dart';
+import '../../announcement/post/utils.dart';
+import '../../responsive/responsive.dart';
+
+class CreateExamScreenMain extends ConsumerStatefulWidget {
+  const CreateExamScreenMain({
     super.key,
   });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _AddPostScreenMainState();
+      _CreateExamScreenMainState();
 }
 
-class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
+class _CreateExamScreenMainState extends ConsumerState<CreateExamScreenMain> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
   final linkController = TextEditingController();
@@ -51,12 +53,13 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
   void sharePost() {
     if ((bannerFile != null || bannerWebFile != null) &&
         titleController.text.isNotEmpty) {
-      ref.read(postControllerProvider.notifier).shareImagePost(
+      ref.read(postControllerProvider.notifier).postAnnouncement(
           context: context,
           title: titleController.text.trim(),
           file: bannerFile,
           webFile: bannerWebFile,
-          description: descriptionController.text.trim());
+          description: descriptionController.text.trim(),
+          type: '');
     } else {
       showSnackBar(context, 'Please enter all the fields');
     }
@@ -69,13 +72,21 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Announcement'),
+        backgroundColor: Colors.grey.shade900,
+        title: Text(
+          'Exam',
+          style: GoogleFonts.sourceSansPro(color: Colors.white, fontSize: 28),
+        ),
         actions: [
-          TextButton(
-            onPressed: sharePost,
-            child: const Text(
-              'Post',
-              style: TextStyle(color: Colors.white),
+          Padding(
+            padding: const EdgeInsets.only(right: 6.0),
+            child: TextButton(
+              onPressed: sharePost,
+              child: Text(
+                'Post',
+                style: GoogleFonts.sourceSansPro(
+                    color: Colors.white, fontSize: 26),
+              ),
             ),
           ),
         ],
@@ -86,6 +97,9 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(children: [
+                  SizedBox(
+                    height: 8,
+                  ),
                   TextField(
                     controller: titleController,
                     decoration: const InputDecoration(
@@ -94,7 +108,7 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(18),
                     ),
-                    maxLength: 30,
+                    maxLength: 40,
                   ),
                   const SizedBox(height: 10),
                   // if (isTypeImage)
@@ -108,7 +122,7 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
                       //  color: currentTheme.textTheme.bodyText2!.color!,
                       child: Container(
                         width: double.infinity,
-                        height: 150,
+                        height: 160,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -185,6 +199,10 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
                   //       ),
 
                   // ],
+
+                  const SizedBox(
+                    height: 16,
+                  ),
                   TextField(
                     controller: descriptionController,
                     decoration: const InputDecoration(
@@ -193,7 +211,7 @@ class _AddPostScreenMainState extends ConsumerState<AddPostScreenMain> {
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(18),
                     ),
-                    maxLines: 5,
+                    maxLines: 10,
                   ),
                 ]),
               ),

@@ -2,14 +2,14 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:instinfo/auth/current_user/controller/current_user_controller_provider.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../tools/utils.dart';
+import '../../../utils/tools/utils.dart';
 import '../post_model.dart';
 import '../repository/post_repository.dart';
 import '../repository/storage_repository_provider.dart';
+
+final selectedCategory = StateProvider((ref) => 'Notice');
 
 final postControllerProvider =
     StateNotifierProvider<PostController, bool>((ref) {
@@ -39,13 +39,14 @@ class PostController extends StateNotifier<bool> {
         _ref = ref,
         _storageRepository = storageRepository,
         super(false);
-
-  void shareImagePost({
+//ref.watch(selectedCategory),
+  void postAnnouncement({
     required BuildContext context,
     required String title,
     required File? file,
     required String description,
     required Uint8List? webFile,
+    required String type,
   }) async {
     state = true;
     String postId = const Uuid().v1();
@@ -61,7 +62,7 @@ class PostController extends StateNotifier<bool> {
       final Post post = Post(
           id: postId,
           title: title,
-          type: 'image',
+          type: type,
           createdAt: DateTime.now(),
           link: r,
           description: description);

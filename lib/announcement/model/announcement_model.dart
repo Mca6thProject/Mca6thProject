@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class Notice {
+class Annoucement {
   final String id;
   final String title;
   final String subtitle;
@@ -9,7 +9,8 @@ class Notice {
   final String date;
   final String others;
   final String img;
-  Notice({
+  final String type;
+  Annoucement({
     required this.id,
     required this.title,
     required this.subtitle,
@@ -18,9 +19,10 @@ class Notice {
     required this.date,
     required this.others,
     required this.img,
+    required this.type,
   });
 
-  Notice copyWith({
+  Annoucement copyWith({
     String? id,
     String? title,
     String? subtitle,
@@ -29,8 +31,9 @@ class Notice {
     String? date,
     String? others,
     String? img,
+    String? type,
   }) {
-    return Notice(
+    return Annoucement(
       id: id ?? this.id,
       title: title ?? this.title,
       subtitle: subtitle ?? this.subtitle,
@@ -39,6 +42,7 @@ class Notice {
       date: date ?? this.date,
       others: others ?? this.others,
       img: img ?? this.img,
+      type: type ?? this.type,
     );
   }
 
@@ -52,11 +56,12 @@ class Notice {
       'date': date,
       'others': others,
       'img': img,
+      'type': type,
     };
   }
 
-  factory Notice.fromMap(Map<String, dynamic> map) {
-    return Notice(
+  factory Annoucement.fromMap(Map<String, dynamic> map) {
+    return Annoucement(
       id: map['id'] ?? '',
       title: map['title'] ?? '',
       subtitle: map['subtitle'] ?? '',
@@ -65,23 +70,25 @@ class Notice {
       date: map['date'] ?? '',
       others: map['others'] ?? '',
       img: map['img'] ?? '',
+      type: map['type'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Notice.fromJson(String source) => Notice.fromMap(json.decode(source));
+  factory Annoucement.fromJson(String source) =>
+      Annoucement.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Notice(id: $id, title: $title, subtitle: $subtitle, body: $body, link: $link, date: $date, others: $others, img: $img)';
+    return 'Annoucement(id: $id, title: $title, subtitle: $subtitle, body: $body, link: $link, date: $date, others: $others, img: $img, type: $type)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Notice &&
+    return other is Annoucement &&
         other.id == id &&
         other.title == title &&
         other.subtitle == subtitle &&
@@ -89,7 +96,8 @@ class Notice {
         other.link == link &&
         other.date == date &&
         other.others == others &&
-        other.img == img;
+        other.img == img &&
+        other.type == type;
   }
 
   @override
@@ -101,6 +109,7 @@ class Notice {
         link.hashCode ^
         date.hashCode ^
         others.hashCode ^
-        img.hashCode;
+        img.hashCode ^
+        type.hashCode;
   }
 }

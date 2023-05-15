@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:instinfo/announcement/ui/widget/announce_box.dart';
 
-import '../../post/controller/post_controller.dart';
+import '../post/controller/post_controller.dart';
 import 'widget/announce_card.dart';
 
 class AnnouceScreen extends ConsumerWidget {
@@ -17,7 +17,7 @@ class AnnouceScreen extends ConsumerWidget {
     return ref.watch(postsProvider).when(
           data: (data) {
             return SizedBox(
-              height: 230,
+              height: 200,
               child: Swiper(
                 physics: const BouncingScrollPhysics(),
                 viewportFraction: 0.9,
@@ -40,9 +40,8 @@ class AnnouceScreen extends ConsumerWidget {
               error.toString(),
             );
           },
-          loading: () => SizedBox(
-              height: 250,
-              child: Center(child: const CircularProgressIndicator())),
+          loading: () => const SizedBox(
+              height: 250, child: Center(child: CircularProgressIndicator())),
         );
   }
 }
